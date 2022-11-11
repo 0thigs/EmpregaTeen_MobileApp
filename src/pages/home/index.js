@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Image, Text, TouchableOpacity, Platform, } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 
@@ -18,7 +18,7 @@ const Home = () => {
         </Text>
         <Animatable.View animation="slideInUp" style={styles.containerSec}>
             <Text style={styles.title}>Procurando o primeiro emprego? Está no lugar certo!</Text>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Signin')}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SignIn')}>
                 <Text style={styles.ButtonText}>Acessar</Text>
             </TouchableOpacity>
         </Animatable.View>
@@ -36,19 +36,44 @@ const styles = StyleSheet.create({
         resizeMode: "contain"
     },
     logoText: {
-        color: "#fff",
-        position: 'absolute',
-        fontSize: 26,
-        fontWeight: "bold",
-        alignSelf: "center",
-        bottom: "50%"
+        ...Platform.select({
+            default: {
+                color: "#fff",
+                position: 'absolute',
+                fontSize: 50,
+                fontWeight: "bold",
+                alignSelf: "center",
+                bottom: "60%"
+            },
+            android: {
+                color: "#fff",
+                position: 'absolute',
+                fontSize: 26,
+                fontWeight: "bold",
+                alignSelf: "center",
+                bottom: "50%"
+            }
+        })
     },
     containerSec: {
-        flex: 2,
-        backgroundColor: "#fff",
-        borderTopStartRadius: 20,
-        borderTopEndRadius: 20,
-        padding: 20,
+        ...Platform.select({
+            android: {
+                flex: 1,
+                padding: 20,
+                backgroundColor: "#fff",
+                borderTopStartRadius: 20,
+                borderTopEndRadius: 20,
+            },
+            default: {
+                position: "absolute",
+                width: "100%",
+                bottom: 0,
+                padding: 50,
+                backgroundColor: "#fff",
+                borderTopStartRadius: 20,
+                borderTopEndRadius: 20,
+            }
+        })
     },
     title: {
         fontSize: 26,

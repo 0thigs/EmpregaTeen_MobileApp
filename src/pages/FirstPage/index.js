@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Linking, ToastAndroid, TouchableOpacity, Text } from 'react-native'; 
 import * as animatable from "react-native-animatable";
 
-const Signin = () => {
+const FirstPage = () => {
 
     const openUrl = async(url) => {
         if(await Linking.canOpenURL(url)) {
@@ -76,4 +76,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default Signin;
+export default FirstPage;
